@@ -1,0 +1,192 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form id="userForm">
+    <div class="form-group">
+        <label class="col-form-label">Nombre:</label>
+        <input type="text" name="nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label">Apellido:</label>
+        <input type="text" name="apellido" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label">Correo:</label>
+        <input type="text" name="correo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label">Teléfono:</label>
+        <input type="text" name="telefono" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label">Contraseña:</label>
+        <input type="password" name="contrasena" class="form-control" />
+    </div>
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Usuario creado correctamente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="successMessage">El usuario se ha creado correctamente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar usuario</button>
+</form>
+<br />
+<form id="encriptForm">
+    <div class="form-group">
+        <label class="col-form-label">Texto:</label>
+        <input type="text" name="texto" class="form-control" />
+        <span id="encriptado"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Encriptar texto</button>
+</form>
+<form id="descriptForm">
+    <div class="form-group">
+        <label class="col-form-label">Texto:</label>
+        <input type="text" name="texto2" class="form-control" />
+        <span id="desencriptado"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Desencriptar texto</button>
+</form>
+<br />
+<div class="table-responsive">
+    <table id="users-table" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<button id="load-users-button" class="btn btn-primary">Cargar usuarios</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#load-users-button').click(function () {
+            $.ajax({
+                url: '/Home/GetUsers',
+                type: 'GET',
+                dataType: 'json',
+                success: function (users) {
+                    console.log("usuarios: ",users)
+                    var $tbody = $('#users-table tbody');
+                    $.each(users, function (index, user) {
+                        console.log("usuarios: ", user.nombre)
+                        var $tr = $('<tr>');
+                        $tr.append($('<td>').text(user.nombre));
+                        $tr.append($('<td>').text(user.apellido));
+                        $tr.append($('<td>').text(user.correo));
+                        $tr.append($('<td>').text(user.telefono));
+                        $tbody.append($tr);
+                    });
+                },
+                error: function () {
+                    alert('Error al obtener los usuarios.');
+                }
+            });
+        });
+        $("#userForm").submit(function (event) {
+            // Evitar que el formulario se envíe automáticamente
+            event.preventDefault();
+
+            // Crear un objeto JavaScript con los valores del formulario
+            var formData = new FormData();
+            formData.append("nombre", $("input[name='nombre']").val());
+            formData.append("apellido", $("input[name='apellido']").val());
+            formData.append("correo", $("input[name='correo']").val());
+            formData.append("telefono", $("input[name='telefono']").val());
+            formData.append("contrasena", $("input[name='contrasena']").val())
+
+            // Enviar una solicitud POST al servidor
+            $.ajax({
+                url: "/Home/CreateUser",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    // Limpiar los campos del formulario
+                    $("input[name='nombre']").val("");
+                    $("input[name='apellido']").val("");
+                    $("input[name='correo']").val("");
+                    $("input[name='telefono']").val("");
+                    $("input[name='contrasena']").val("");
+
+                    // Mostrar un mensaje de éxito
+                    $("#successMessage").text(response.message);
+                    $("#successModal").modal("show");
+                },
+                error: function (xhr) {
+                    // Manejar errores aquí
+                }
+            });
+        });
+        $("#encriptForm").submit(function (event) {
+            // Evitar que el formulario se envíe automáticamente
+            event.preventDefault();
+
+            // Crear un objeto JavaScript con los valores del formulario
+            var formData = new FormData();
+            formData.append("text", $("input[name='texto']").val());
+            // Enviar una solicitud POST al servidor
+            $.ajax({
+                url: "/Home/EncriptText",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log("soy encriptado: ", response.encryptedText)
+                    // Limpiar los campos del formulario
+                    $("input[name='texto']").val(response.encryptedText);
+                },
+                error: function (xhr) {
+                    // Manejar errores aquí
+                }
+            });
+        });
+        $("#descriptForm").submit(function (event) {
+            // Evitar que el formulario se envíe automáticamente
+            event.preventDefault();
+
+            // Crear un objeto JavaScript con los valores del formulario
+            var formData = new FormData();
+            formData.append("text", $("input[name='texto2']").val());
+            // Enviar una solicitud POST al servidor
+            $.ajax({
+                url: "/Home/DescriptText",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log("soy desencriptado: ", response.encryptedText)
+                    // Limpiar los campos del formulario
+                    $("input[name='texto2']").val(response.encryptedText);
+                },
+                error: function (xhr) {
+                    // Manejar errores aquí
+                }
+            });
+        });
+    });
+</script>
