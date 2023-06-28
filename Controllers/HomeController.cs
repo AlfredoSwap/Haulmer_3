@@ -34,11 +34,6 @@ namespace Haulmer_3.Controllers
                 string correo = Request.Form["correo"];
                 string telefono = Request.Form["telefono"];
                 string contrasena = Request.Form["contrasena"];
-                //string fechaCreacion = request.Form["fechaCreacion"];
-                //string fechaActualizacion = request.Form["fechaActualizacio
-
-
-                // Si el correo electrónico no existe, puedes crear un nuevo objeto UserModel y agregarlo al DbContext
                 var newUser = new UserModel
                 {
                     Nombre = nombre,
@@ -53,12 +48,12 @@ namespace Haulmer_3.Controllers
                 _dbContext.Users.Add(newUser);
                 _dbContext.SaveChanges();
 
-                // Si se guardaron los datos correctamente, puedes retornar una respuesta con un mensaje de éxito
+                // Flujo exitoso
                 return Json(new { success = true, message = "El usuario se creó correctamente." });
             }
             catch 
             {
-                // Si se guardaron los datos correctamente, puedes retornar una respuesta con un mensaje de éxito
+                // Flujo negativo
                 return Json(new { success = false, message = "El usuario no se creó correctamente." });
             }
         }
@@ -70,8 +65,6 @@ namespace Haulmer_3.Controllers
                 u.Apellido,
                 u.Correo,
                 u.Telefono,
-                //Fecha_Creacion = u.Fecha_Creacion.ToString("yyyy-MM-dd HH:mm:ss"),
-                //Fecha_Actualizacion = u.Fecha_Actualizacion.ToString("yyyy-MM-dd HH:mm:ss")
             }).ToList();
             
             return Json(users);
@@ -93,33 +86,19 @@ namespace Haulmer_3.Controllers
             //    rng.GetBytes(ivBytes);
             //}
             //string iv = Convert.ToBase64String(ivBytes);
-
+            //Para ambitos de prueba se deja la key y iv estaticas
             string key = "PGkKf+Wak5FU06JWDKFGb1s2/EdnEANA";
             string iv = "lP+LE/dZpEs=";
 
             string encryptedText = TDESEncryptor.Encrypt(text, key, iv);
 
             Console.WriteLine(encryptedText);
-            // Si se guardaron los datos correctamente, puedes retornar una respuesta con un mensaje de éxito
+            // Si se guardaron los datos correctamente, se retorna una respuesta con un mensaje de éxito
             return Json(new { success = true, encryptedText = encryptedText });
         }
         public ActionResult DescriptText()
         {
             string text = Request.Form["text"];
-
-
-            //byte[] keyBytes = new byte[24]; // Tamaño de clave para TripleDES
-            //using (var rng = new RNGCryptoServiceProvider())
-            //{
-            //    rng.GetBytes(keyBytes);
-            //}
-            //string key = Convert.ToBase64String(keyBytes);
-            //byte[] ivBytes = new byte[8]; // Tamaño de IV para TripleDES
-            //using (var rng = new RNGCryptoServiceProvider())
-            //{
-            //    rng.GetBytes(ivBytes);
-            //}
-            //string iv = Convert.ToBase64String(ivBytes);
 
             string key = "PGkKf+Wak5FU06JWDKFGb1s2/EdnEANA";
             string iv = "lP+LE/dZpEs=";
@@ -127,7 +106,6 @@ namespace Haulmer_3.Controllers
             string encryptedText = TDESEncryptor.Decrypt(text, key, iv);
 
             Console.WriteLine(encryptedText);
-            // Si se guardaron los datos correctamente, puedes retornar una respuesta con un mensaje de éxito
             return Json(new { success = true, encryptedText = encryptedText });
         }
         public IActionResult Index()

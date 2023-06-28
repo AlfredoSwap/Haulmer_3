@@ -105,10 +105,9 @@
             });
         });
         $("#userForm").submit(function (event) {
-            // Evitar que el formulario se envíe automáticamente
+            // Evita que el formulario se envíe automáticamente
             event.preventDefault();
 
-            // Crear un objeto JavaScript con los valores del formulario
             var formData = new FormData();
             formData.append("nombre", $("input[name='nombre']").val());
             formData.append("apellido", $("input[name='apellido']").val());
@@ -116,7 +115,7 @@
             formData.append("telefono", $("input[name='telefono']").val());
             formData.append("contrasena", $("input[name='contrasena']").val())
 
-            // Enviar una solicitud POST al servidor
+            // se envia una solicitud POST al servidor
             $.ajax({
                 url: "/Home/CreateUser",
                 type: "POST",
@@ -131,23 +130,22 @@
                     $("input[name='telefono']").val("");
                     $("input[name='contrasena']").val("");
 
-                    // Mostrar un mensaje de éxito
+                    // Mensaje de exito
                     $("#successMessage").text(response.message);
                     $("#successModal").modal("show");
                 },
                 error: function (xhr) {
-                    // Manejar errores aquí
+
                 }
             });
         });
         $("#encriptForm").submit(function (event) {
-            // Evitar que el formulario se envíe automáticamente
+            // Evita que el formulario se envíe automáticamente
             event.preventDefault();
 
-            // Crear un objeto JavaScript con los valores del formulario
             var formData = new FormData();
             formData.append("text", $("input[name='texto']").val());
-            // Enviar una solicitud POST al servidor
+            //  POST al servidor
             $.ajax({
                 url: "/Home/EncriptText",
                 type: "POST",
@@ -168,10 +166,9 @@
             // Evitar que el formulario se envíe automáticamente
             event.preventDefault();
 
-            // Crear un objeto JavaScript con los valores del formulario
             var formData = new FormData();
             formData.append("text", $("input[name='texto2']").val());
-            // Enviar una solicitud POST al servidor
+            // Envia una solicitud POST al servidor
             $.ajax({
                 url: "/Home/DescriptText",
                 type: "POST",
@@ -180,7 +177,6 @@
                 contentType: false,
                 success: function (response) {
                     console.log("soy desencriptado: ", response.encryptedText)
-                    // Limpiar los campos del formulario
                     $("input[name='texto2']").val(response.encryptedText);
                 },
                 error: function (xhr) {
