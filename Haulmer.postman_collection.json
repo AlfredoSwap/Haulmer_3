@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "247b74e0-52fc-4f2c-a6ad-94c7ac249bf9",
+		"name": "Haulmer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23502045"
+	},
+	"item": [
+		{
+			"name": "EncriptText",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "Haulmer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44339/Home/EncriptText",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44339",
+					"path": [
+						"Home",
+						"EncriptText"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Encript",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "Haulmer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:44339/Home/EncriptText",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44339",
+							"path": [
+								"Home",
+								"EncriptText"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 19:31:12 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"encryptedText\": \"8XeQ8E1faJg=\"\n}"
+				}
+			]
+		},
+		{
+			"name": "DescriptText",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "8XeQ8E1faJg=",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44339/Home/DescriptText",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44339",
+					"path": [
+						"Home",
+						"DescriptText"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "DescriptText",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "8XeQ8E1faJg=",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:44339/Home/DescriptText",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44339",
+							"path": [
+								"Home",
+								"DescriptText"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 19:32:23 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"encryptedText\": \"Haulmer\"\n}"
+				}
+			]
+		},
+		{
+			"name": "CreateUser",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "sdadas",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "sadas",
+							"type": "text"
+						},
+						{
+							"key": "correo",
+							"value": "aaaaa",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "2121221",
+							"type": "text"
+						},
+						{
+							"key": "contrasena",
+							"value": "asdsadasda",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44339/Home/CreateUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44339",
+					"path": [
+						"Home",
+						"CreateUser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CreateUser",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "sdadas",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "sadas",
+									"type": "text"
+								},
+								{
+									"key": "correo",
+									"value": "aaaaa",
+									"type": "text"
+								},
+								{
+									"key": "telefono",
+									"value": "2121221",
+									"type": "text"
+								},
+								{
+									"key": "contrasena",
+									"value": "asdsadasda",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:44339/Home/CreateUser",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44339",
+							"path": [
+								"Home",
+								"CreateUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 19:32:33 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"El usuario se creó correctamente.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44339/Home/GetUsers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44339",
+					"path": [
+						"Home",
+						"GetUsers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetUser",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44339/Home/GetUsers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44339",
+							"path": [
+								"Home",
+								"GetUsers"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 19:22:16 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"nombre\": \"Alfredo \",\n        \"apellido\": \"Garces\",\n        \"correo\": \"alfredo@garces.cl\",\n        \"telefono\": \"21321321\"\n    },\n    {\n        \"nombre\": \"Juan\",\n        \"apellido\": \"Pérez\",\n        \"correo\": \"juan.perez@example.com\",\n        \"telefono\": \"555.1234\"\n    },\n    {\n        \"nombre\": \"Ejemplo\",\n        \"apellido\": \"Ejemplo2\",\n        \"correo\": \"a@garces.cl\",\n        \"telefono\": \"21312312\"\n    },\n    {\n        \"nombre\": \"sdas\",\n        \"apellido\": \"saads\",\n        \"correo\": \"saddasasd\",\n        \"telefono\": \"23213132\"\n    }\n]"
+				}
+			]
+		}
+	]
+}
